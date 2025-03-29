@@ -14,12 +14,11 @@ print("2: Scissors")
 user_choice = int(input("What do you choose:\n"))
 computer_choice = random.randint(0, 2)
 
-print(f"\nYou chose {symbols[user_choice]}")
-print(f"Computer chose {symbols[computer_choice]}")
-
 if user_choice < 0 or user_choice > 2:
     print("\nYou have passed an invalid number. Game Over 💀")
 else:
+    print(f"\nYou chose {symbols[user_choice]}")
+    print(f"\nComputer chose {symbols[computer_choice]}")
     if user_choice == computer_choice:
         print("\nIt is a draw ⛔️")
     elif user_choice == 0 and computer_choice == 2:
