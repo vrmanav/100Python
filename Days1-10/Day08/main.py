@@ -53,7 +53,7 @@ alphabet = [
 
 # !Improved approach
 def cipher(original_text, shift, choice):
-    """Encodes or decodes original text based on user's choice and returns the ciphered text"""
+    """Encodes or decodes the given text using the Caesar cipher."""
     if choice == "decode":
         shift *= -1
     ciphered_text = ""
@@ -69,7 +69,7 @@ def cipher(original_text, shift, choice):
 
 
 def caesar_cipher():
-    """Start caesar cipher"""
+    """A Caesar Cipher program that encodes and decodes text."""
     print("Welcome to Caesar Cipher 🔐\n")
     choice = input(
         "Do you want to encode or decode your text [ENCODE/DECODE]: "
