@@ -29,27 +29,43 @@ alphabet = [
     "z",
 ]
 
+# !Noob approach
+# def encode(original_text, shift):
+#     """Encodes the text provided by the user"""
+#     ciphered_text = ""
+#     for letter in original_text:
+#         old_index = alphabet.index(letter)
+#         new_index = (old_index + shift) % 26
+#         new_letter = alphabet[new_index]
+#         ciphered_text += new_letter
+#     print(f"\nEncoded text is - {ciphered_text}")
 
-def encode(original_text, shift):
-    """Encodes the text provided by the user"""
+# def decode(original_text, shift):
+#     """Decodes the text provided by the user"""
+#     ciphered_text = ""
+#     for letter in original_text:
+#         old_index = alphabet.index(letter)
+#         new_index = (old_index - shift) % 26
+#         new_letter = alphabet[new_index]
+#         ciphered_text += new_letter
+#     print(f"\nDecoded text is - {ciphered_text}")
+
+
+# !Improved approach
+def cipher(original_text, shift, choice):
+    """Encodes or decodes original text based on user's choice and returns the ciphered text"""
+    if choice == "decode":
+        shift *= -1
     ciphered_text = ""
     for letter in original_text:
-        old_index = alphabet.index(letter)
-        new_index = (old_index + shift) % 26
-        new_letter = alphabet[new_index]
-        ciphered_text += new_letter
-    print(f"\nEncoded text is - {ciphered_text}")
-
-
-def decode(original_text, shift):
-    """Decodes the text provided by the user"""
-    ciphered_text = ""
-    for letter in original_text:
-        old_index = alphabet.index(letter)
-        new_index = (old_index - shift) % 26
-        new_letter = alphabet[new_index]
-        ciphered_text += new_letter
-    print(f"\nDecoded text is - {ciphered_text}")
+        if letter in alphabet:
+            old_index = alphabet.index(letter)
+            new_index = (old_index + shift) % 26
+            new_letter = alphabet[new_index]
+            ciphered_text += new_letter
+        else:
+            ciphered_text += letter
+    return ciphered_text
 
 
 def caesar_cipher():
@@ -60,10 +76,15 @@ def caesar_cipher():
     ).lower()
     original_text = input("Enter your text: ").lower()
     shift = int(input("Enter shift number: "))
-    if choice == "encode":
-        encode(original_text=original_text, shift=shift)
-    elif choice == "decode":
-        decode(original_text=original_text, shift=shift)
+
+    # !Part of noob approach
+    # if choice == "encode":
+    #     encode(original_text=original_text, shift=shift)
+    # elif choice == "decode":
+    #     decode(original_text=original_text, shift=shift)
+
+    ciphered_text = cipher(original_text=original_text, shift=shift, choice=choice)
+    print(f"\n{choice.capitalize()}d text is: {ciphered_text}")
 
 
 caesar_cipher()
