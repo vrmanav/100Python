@@ -10,11 +10,28 @@ HARD_LEVEL_TURNS = 5
 
 
 def set_turns():
-    difficulty = input("\nChoose your difficulty [EASY / HARD]: ").lower()
-    if difficulty == "easy":
-        return EASY_LEVEL_TURNS
-    else:
-        return HARD_LEVEL_TURNS
+    """Sets the difficulty level and returns the number of attempts."""
+    while True:
+        difficulty = input("Choose your difficulty [EASY / HARD]: ").lower()
+        if difficulty == "easy":
+            return EASY_LEVEL_TURNS
+        elif difficulty == "hard":
+            return HARD_LEVEL_TURNS
+        else:
+            print("Invalid input. Please enter 'easy' or 'hard'")
+
+
+def check_guess(guess, number, turns):
+    """Checks the user's guess against the secret number and returns the remaining turns."""
+    if guess == number:
+        print("\nThat's correct! You have guessed the number 🎉")
+        return 0
+    elif guess < number:
+        print("That is too low 🔽")
+        return turns - 1
+    elif guess > number:
+        print("That is too high 🔼")
+        return turns - 1
 
 
 def number_guessing():
@@ -30,24 +47,24 @@ def number_guessing():
 
     print(f"HINT: {number}")
     turns = set_turns()
-    number_not_guessed = True
-    while turns > 0 and number_not_guessed:
+    while turns > 0:
         print(f"\nYou have {turns} turns remaining")
-        guess = int(input("Make your guess: "))
-        if guess == number:
-            print("\nThat's correct! You have guessed the number 🎉")
-            number_not_guessed = False
-            return
-        elif guess < number:
-            print("That is too low 🔽")
-            turns -= 1
-        elif guess > number:
-            print("That is too high 🔼")
-            turns -= 1
+        while True:
+            try:
+                guess = int(input("Make your guess: "))
+                break
+            except ValueError:
+                print("Invalid input. Please enter a whole number.")
 
-    os.system("clear")
-    print("\nYou have exhausted all your turns. Game over 💀")
-    print(f"The number was {number}")
+        turns = check_guess(guess=guess, number=number, turns=turns)
+        time.sleep(0.5)
+        if turns == 0 and guess != number:
+            os.system("clear")
+            print("You have exhausted all your attempts. Game over 💀")
+            print(f"The secret number was {number}.")
+            return
+        elif turns == 0 and guess == number:
+            return
 
 
 number_guessing()
