@@ -45,7 +45,7 @@ def number_guessing():
     time.sleep(3)
     os.system("clear")
 
-    print(f"HINT: {number}")
+    # print(f"HINT: {number}") Uncomment for testing purpose
     turns = set_turns()
     while turns > 0:
         print(f"\nYou have {turns} turns remaining")
