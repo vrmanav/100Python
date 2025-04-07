@@ -92,7 +92,7 @@ def is_transaction_successful(drink_cost, money_received):
 
 def make_coffee(drink_name, ingredients):
     """Deduct the required ingredients from resources"""
-    for item in resources:
+    for item in ingredients:
         resources[item] -= ingredients[item]
     print(f"and your {drink_name}. Enjoy ☕️")
 
