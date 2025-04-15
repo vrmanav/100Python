@@ -19,7 +19,7 @@ for turtle_count in range(0, 7):
 
 user_bet = screen.textinput(
     title="Make your guess", prompt="Which color do you think will win"
-)
+).lower()
 
 game_is_ON = True
 
@@ -30,10 +30,10 @@ while game_is_ON:
             turtle.forward(random_distance)
         else:
             game_is_ON = False
-            winner = turtle.pencolor().capitalize()
+            winner = turtle.pencolor()
 
 if user_bet == winner:
     print("🎉 You made a correct guess. You WIN !!")
 else:
-    print(f"😕 You were unlucky. {winner} turtle won the race.")
+    print(f"😕 You were unlucky, {winner} turtle won the race.")
 screen.exitonclick()
