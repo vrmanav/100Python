@@ -9,7 +9,6 @@ class Ball(Turtle):
         self.color("blue")
         self.x_move = 10
         self.y_move = 10
-        self.shapesize(stretch_len=1.5, stretch_wid=1.5)
 
     def move(self):
         new_x = self.xcor() + self.x_move
