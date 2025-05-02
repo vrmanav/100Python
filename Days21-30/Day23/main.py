@@ -4,6 +4,8 @@ from player import Player
 from scoreboard import Scoreboard
 import time
 
+SCREEN_TOP = (0, 380)
+
 # Screen setup
 screen = Screen()
 screen.title("Road Cross game")
@@ -21,9 +23,20 @@ screen.onkey(key="Down", fun=player.move_down)
 
 game_is_on = True
 while game_is_on:
-    time.sleep(0.1)
+    time.sleep(car_manager.move_speed)
     screen.update()
     car_manager.generate_car()
     car_manager.move()
+
+    for car in car_manager.all_cars:
+        if car.distance(player) < 20:
+            game_is_on = False
+            scoreboard.game_over()
+
+    if player.is_at_finish_line():
+        player.go_to_start()
+        car_manager.increase_speed()
+        scoreboard.update_scoreboard()
+
 
 screen.exitonclick()
