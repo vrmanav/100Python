@@ -23,7 +23,7 @@ screen.onkey(key="Down", fun=player.move_down)
 
 game_is_on = True
 while game_is_on:
-    time.sleep(car_manager.move_speed)
+    time.sleep(0.1)
     screen.update()
     car_manager.generate_car()
     car_manager.move()
@@ -36,7 +36,7 @@ while game_is_on:
     if player.is_at_finish_line():
         player.go_to_start()
         car_manager.increase_speed()
-        scoreboard.update_scoreboard()
+        scoreboard.increase_level()
 
 
 screen.exitonclick()
