@@ -46,3 +46,10 @@ class Snake:
     def move_right(self):
         if self.HEAD.heading() != 180:
             self.HEAD.setheading(0)
+
+    def reset(self):
+        for segment in self.segments:
+            segment.goto(1000, 1000)
+        self.segments.clear()
+        self.create_snake()
+        self.HEAD = self.segments[0]
